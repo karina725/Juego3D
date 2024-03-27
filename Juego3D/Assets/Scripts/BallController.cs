@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,16 +10,27 @@ public class BallController : MonoBehaviour
     public float impulseForce = 3f;
     private bool ignoreNextcollision;
 
+    private Vector3 startPosition;
 
-    private void OnCollisionEnter(Collision coll)
+    private void Start()
+    {
+        startPosition = transform.position;
+    }
+
+    private void OnCollisionEnter(Collision collision)
     {
 
         if(ignoreNextcollision)
         {
             return;
         }
+
+        DeathPart deathPart = collision.transform.GetComponent<DeathPart>();
+        if(deathPart)
+        {
+            GameManager.singleton.Restarlevel();
+        }
         
-        GameManager.singleton.AddScore(1);
 
         rb.velocity = Vector3.zero;
         rb.AddForce(Vector3.up*impulseForce, ForceMode.Impulse);
@@ -30,5 +42,10 @@ public class BallController : MonoBehaviour
     private void AllowNextCollision()
     {
         ignoreNextcollision = false;
+    }
+
+    public void ResetBall()
+    {
+        transform.position = startPosition;
     }
 }
