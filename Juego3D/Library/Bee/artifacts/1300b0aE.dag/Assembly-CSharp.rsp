@@ -361,6 +361,7 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GoalController.cs"
 "Assets/Scripts/HelixController.cs"
+"Assets/Scripts/MainMenu/Menu.cs"
 "Assets/Scripts/PassScorePoint.cs"
 "Assets/Scripts/Stage.cs"
 "Assets/Scripts/UIManager.cs"
