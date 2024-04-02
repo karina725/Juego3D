@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Level
 {
+    internal static object transform;
     [Range(1,11)]
     public int partCount = 11;
 
